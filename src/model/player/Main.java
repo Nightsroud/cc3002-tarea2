@@ -1,4 +1,4 @@
-
+package model.player;
 import controller.ConsoleController;
 import model.*;
 import model.card.*;

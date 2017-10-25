@@ -65,6 +65,28 @@ public class PlayerCardTest {
 		assertEquals(108, deck.getSize());
 		cpm = new CardPilesManager(deck, discard);
 		assertEquals(107, cpm.getDrawableCardsNumber());
+		you.addToHand(cpm.drawCards(7));
+		cpu1.addToHand(cpm .drawCards(7));
+		cpu2.addToHand(cpm.drawCards(7));
+		plm.addPlayer(you);
+		plm.addPlayer(cpu1);
+		plm.addPlayer(cpu2);
+		pm = new PlayerManager(plm.buildPlayerList());
+		game = new GameLogic(pm, cpm);
+		view = new ConsoleView(game);
+		ctrl = new ConsoleController(game, view);
+		ctrl.playTurn();
+		assertEquals(0, ctrl.AskForCardFromHand(pm.getCurrentPlayer())); //al pedir carta, responder 0.
+		assertEquals("Sentido Horario",Direction.CLOCKWISE.getName());
+		invert.executeAction(game, ctrl);
+		pm.invertDirection();
+		assertEquals(false, game.hasEnded());
+		assertEquals(true, game.isDrawWellEmpty());
+		game.announceWinner(ctrl);
+		nan.executeAction(game, ctrl);
+		pm.getCurrentPlayer().getCardToPlay(game, ctrl);
+		assertEquals(false,pm.getCurrentPlayer().needsToDrawCard(num));
+		cpu1.selectColor(game, ctrl);
 	}
 
 }
