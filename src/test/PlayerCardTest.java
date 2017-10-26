@@ -23,7 +23,7 @@ public class PlayerCardTest {
 	private IPlayerManager pm;
 	private IController ctrl;
 	private IGameLogic game;
-	private ICard num,num2,num3,p2,p4,wild,invert,skip,nan;
+	private ICard num,num2,num3,p2,p4,wild,invert,nan;
 	private ConsoleView view;
 	private IDeckStrategy strat;
 	
@@ -36,7 +36,6 @@ public class PlayerCardTest {
 		p4 = new Plus4Card();
 		wild = new ColorCard();
 		invert = new InvertCard(Color.BLUE);
-		skip = new SkipCard(Color.BLUE);
 		nan = new NullCard();
 		you = new HumanPlayer();
 		cpu1 = new ComputerPlayer();

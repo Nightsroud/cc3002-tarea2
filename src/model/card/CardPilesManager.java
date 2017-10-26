@@ -25,14 +25,17 @@ public class CardPilesManager implements ICardPilesManager {
 
 	@Override
 	public void rebuildDeck() {
-		ICard aux = this.discard.popCard();
-		this.deck.pushCards(discard);
-		this.discard.pushCard(aux);
+		if(this.deck.getSize() == 0) {
+			ICard aux = this.discard.popCard();
+			this.deck.pushCards(discard);
+			this.discard.pushCard(aux);
+		}
 
 	}
 
 	@Override
 	public ICard drawCard() {
+		this.rebuildDeck();
 		return this.deck.popCard();
 	}
 
@@ -45,6 +48,7 @@ public class CardPilesManager implements ICardPilesManager {
 	public ArrayList<ICard> drawCards(int cardsNumber) {
 		ArrayList<ICard> cards = new ArrayList<>();
 		for(int i = 0; i < cardsNumber; i++) {
+			this.rebuildDeck();
 			cards.add(this.deck.popCard());
 		}
 		return cards;

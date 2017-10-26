@@ -19,24 +19,24 @@ public class Main {
 
   public static void main(String[] args) {
     IPlayerListBuilder playerBuilder = new PlayerListBuilder();
-    HumanPlayer you = new HumanPlayer();
-    ComputerPlayer cpu1 = new ComputerPlayer();
-    ComputerPlayer cpu2 = new ComputerPlayer();
-    ComputerPlayer cpu3 = new ComputerPlayer();
+    HumanPlayer jugador1 = new HumanPlayer();
+    ComputerPlayer jugador2 = new ComputerPlayer();
+    ComputerPlayer jugador3 = new ComputerPlayer();
+    ComputerPlayer jugador4 = new ComputerPlayer();
     ICardPile discard = new CardPiles();
     ICardPile deck = new CardPiles();
     IDeckStrategy strats = new NormalStrategy();
     deck = strats.createDeck();
     deck.shuffle();
     ICardPilesManager cardManager = new CardPilesManager(deck, discard);
-    you.addToHand(cardManager.drawCards(7));
-    cpu1.addToHand(cardManager.drawCards(7));
-    cpu2.addToHand(cardManager.drawCards(7));
-    cpu3.addToHand(cardManager.drawCards(7));
-    playerBuilder.addPlayer(you);
-    playerBuilder.addPlayer(cpu1);
-    playerBuilder.addPlayer(cpu2);
-    playerBuilder.addPlayer(cpu3);
+    jugador1.addToHand(cardManager.drawCards(7));
+    jugador2.addToHand(cardManager.drawCards(7));
+    jugador3.addToHand(cardManager.drawCards(7));
+    jugador4.addToHand(cardManager.drawCards(7));
+    playerBuilder.addPlayer(jugador1);
+    playerBuilder.addPlayer(jugador2);
+    playerBuilder.addPlayer(jugador3);
+    playerBuilder.addPlayer(jugador4);
     IPlayerManager playerManager = new PlayerManager(playerBuilder.buildPlayerList());
     IGameLogic game = new GameLogic(playerManager, cardManager);
     ConsoleView view = new ConsoleView(game);
